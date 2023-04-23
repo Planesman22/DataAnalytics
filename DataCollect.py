@@ -1,33 +1,30 @@
 import RPi.GPIO as GPIO
 from time import sleep
 
+
 def PWToDC(PW):
     Frequency = 400
-    Period = 1/Frequency
-    return (PW/Period) * 0.0001
+    Period = 1 / Frequency
+    return (PW / Period) * 0.0001
+
 
 def PowerToDC(Power):
-    return PWToDC(1000+1000*Power)
+    return PWToDC(1000 + 1000 * Power)
 
-#GPIO Setup
+
+# GPIO Init
 PWMPin = 12
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(PWMPin, GPIO.OUT)
-
 ESC = GPIO.PWM(PWMPin, 400)
 ESC.start(0)
 
-# ESC Calibration
-ESC.ChangeDutyCycle(PowerToDC(1.00))
-while True:
-    UserInput = input("Please Connect Battery! (Enter Y to continue)")
-    if UserInput.lower() == 'y':
-        break
-sleep(3)
-ESC.ChangeDutyCycle(PowerToDC(0.00))
-sleep(10)
+# Change power to 0 so we don't kill ourselves
+ESC.ChangeDutyCycle(PowerToDC(0.0))
 
-#Spinny Time to check which direction
-ESC.ChangeDutyCycle(PowerToDC(0.10))
+# Literally wait a second, for vibe check
+sleep(1)
+
+ESC.ChangeDutyCycle(PowerToDC(0.3))
 sleep(10)
