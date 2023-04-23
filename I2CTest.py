@@ -12,8 +12,8 @@ while True:
 
     Data = Bus.read_byte(Address)
 
-    print("At time "+str(time.monotonic()-StartTime)+":")
+    print("At time "+str(round(time.monotonic()-StartTime))+":")
     print(Data)
 
-    time.sleep(0.5)
+    time.sleep(0.1)
 
