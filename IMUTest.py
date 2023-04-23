@@ -2,10 +2,10 @@ import os
 import time
 import board
 import busio
-from adafruit_lsm6ds.lsm6dsox import LSM6DSOX
+from adafruit_lsm6ds.lsm6dsox import ISM330DHCX
 
 I2C = busio.I2C(board.SCL, board.SDA)
-Sensor = LSM6DSOX(I2C)
+Sensor = ISM330DHCX(I2C)
 
 while True:
     os.system('clear')
