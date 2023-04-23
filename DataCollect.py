@@ -1,5 +1,5 @@
 import os
-# import board
+import board
 import time
 import shawnc
 import RPi.GPIO as GPIO
