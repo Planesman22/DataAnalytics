@@ -10,4 +10,4 @@ while True:
     os.system('clear')
     print("Acceleration: X:%.2f, Y: %.2f, Z: %.2f m/s^2" % Sensor.acceleration)
     print("Gyro X:%.2f, Y: %.2f, Z: %.2f radians/s" % Sensor.gyro)
-    time.sleep(0.5)
+    time.sleep(0.1)
