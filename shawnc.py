@@ -1,7 +1,7 @@
 def PWToDC(PW):
     Frequency = 400
     Period = 1/Frequency
-    return (PW/Period) * 0.000001 * 65535
+    return int((PW/Period) * 0.000001 * 65535)
 
 def PowerToDC(Power):
     # We use PW range from 1000-2000
