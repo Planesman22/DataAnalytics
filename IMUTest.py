@@ -7,7 +7,7 @@ submodules = dir(adafruit_lsm6ds)
 print(submodules)
 
 I2C = board.I2C()  # uses board.SCL and board.SDA
-Sensor = adafruit_lsm6ds.LSM6DS(I2C)
+Sensor = adafruit_lsm6ds.lsm6dsox(I2C)
 
 while True:
     os.system('clear')
