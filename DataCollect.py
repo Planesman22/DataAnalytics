@@ -48,7 +48,7 @@ sleep(3)
 # Write Data
 Lines = 0
 print("Attempting to write "+str(len(DataBuffer))+" lines of data....")
-with open('nominal.csv', 'w', newline='') as csvfile:
+with open('Analytics/nominal.csv', 'w', newline='') as csvfile:
     Writer = csv.writer(csvfile)
     for Row in DataBuffer:
         Writer.writerow(Row)
