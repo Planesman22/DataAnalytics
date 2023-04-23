@@ -26,6 +26,8 @@ while True:
         break
 sleep(3)
 ESC.ChangeDutyCycle(PowerToDC(0.00))
-sleep(5)
+sleep(10)
 
-
+#Spinny Time to check which direction
+ESC.ChangeDutyCycle(PowerToDC(0.10))
+sleep(10)
