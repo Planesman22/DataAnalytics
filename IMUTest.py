@@ -1,6 +1,7 @@
 import os
 import time
 import board
+import busio
 import adafruit_lsm6ds
 
 I2C = busio.I2C(board.SCL, board.SDA)  # uses board.SCL and board.SDA
