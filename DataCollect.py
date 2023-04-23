@@ -18,8 +18,14 @@ GPIO.setup(PWMPin, GPIO.OUT)
 ESC = GPIO.PWM(PWMPin, 400)
 ESC.start(0)
 
-#First Calibrate ESC
+# ESC Calibration
 ESC.ChangeDutyCycle(PowerToDC(1.00))
-sleep(5)
+while True:
+    UserInput = input("Please Connect Battery! (Enter Y to continue)")
+    if UserInput.lower() == 'y':
+        break
+sleep(3)
 ESC.ChangeDutyCycle(PowerToDC(0.00))
-sleep(10)
+sleep(5)
+
+
