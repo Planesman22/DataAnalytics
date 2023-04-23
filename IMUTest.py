@@ -3,6 +3,9 @@ import time
 import board
 from adafruit_lsm6ds.lsm6dsox import LSM6DSOX
 
+submodules = dir(adafruit_lsm6ds)
+print(submodules)
+
 I2C = board.I2C()  # uses board.SCL and board.SDA
 Sensor = LSM6DSOX(I2C)
 
