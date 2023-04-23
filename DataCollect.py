@@ -34,7 +34,7 @@ sleep(3)
 StartTime = time.monotonic()
 DataBuffer = []
 
-while (time.monotonic()-StartTime)< (60*5):
+while (time.monotonic()-StartTime)< (20):
     SensorData = Sensor.acceleration
     os.system('clear')
     print(SensorData)
