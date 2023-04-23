@@ -3,12 +3,11 @@ import time
 import board
 import adafruit_lsm6ds
 
-i2c = board.I2C(board.SCL, board.SDA)  # uses board.SCL and board.SDA
-sox = LSM6DSOX(i2c)
+I2C = busio.I2C(board.SCL, board.SDA)  # uses board.SCL and board.SDA
+Sensor = adafruit_lsm6ds.LSM6DSOX(I2C)
 
 while True:
     os.system('clear')
-    print("Acceleration: X:%.2f, Y: %.2f, Z: %.2f m/s^2"%(sox.acceleration))
-    print("Gyro X:%.2f, Y: %.2f, Z: %.2f radians/s"%(sox.gyro))
-    print("")
+    print("Acceleration: X:%.2f, Y: %.2f, Z: %.2f m/s^2" % Sensor.acceleration)
+    print("Gyro X:%.2f, Y: %.2f, Z: %.2f radians/s" % Sensor.gyro)
     time.sleep(0.5)
