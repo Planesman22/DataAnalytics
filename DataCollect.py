@@ -15,16 +15,16 @@ Sensor = ISM330DHCX(I2C)
 ESC = pwmio.PWMOut(board.D18, frequency=400)
 
 # Change power to 0 so we don't kill ourselves
-ESC.duty_cycle = shawnc.PowerToDC(0.0)
+ESC.duty_cycle = shawnc.PWToDC(1000)
 
 # Literally wait a second, for vibe check
 sleep(1)
 
-ESC.duty_cycle = shawnc.PowerToDC(0.05)
+ESC.duty_cycle = shawnc.PWToDC(1000)
 sleep(0.5)
-ESC.duty_cycle = shawnc.PowerToDC(0.10)
+ESC.duty_cycle = shawnc.PWToDC(1000)
 sleep(0.5)
-ESC.duty_cycle = shawnc.PowerToDC(0.15)
+ESC.duty_cycle = shawnc.PWToDC(1000)
 sleep(0.5)
-ESC.duty_cycle = shawnc.PowerToDC(0.20)
+ESC.duty_cycle = shawnc.PWToDC(1000)
 sleep(0.5)
