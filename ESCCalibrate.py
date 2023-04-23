@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-import shawncommon
+import shawnc
 from time import sleep
 
 #GPIO Setup
@@ -12,12 +12,12 @@ ESC = GPIO.PWM(PWMPin, 400)
 ESC.start(0)
 
 # ESC Calibration
-ESC.ChangeDutyCycle(PowerToDC(1.00))
+ESC.ChangeDutyCycle(shawnc.PowerToDC(1.00))
 while True:
     UserInput = input("Please Connect Battery! (Enter Y to continue)")
     if UserInput.lower() == 'y':
         break
 sleep(3)
-ESC.ChangeDutyCycle(PowerToDC(0.00))
+ESC.ChangeDutyCycle(shawnc.PowerToDC(0.00))
 sleep(15)
 print("ESC should be calibrated, please check tones!")
