@@ -12,12 +12,12 @@ ESC = GPIO.PWM(PWMPin, 400)
 ESC.start(0)
 
 # ESC Calibration
-ESC.ChangeDutyCycle(shawnc.PowerToDC(1.00))
+ESC.ChangeDutyCycle(shawnc.PWToDC(2000))
 while True:
     UserInput = input("Please Connect Battery! (Enter Y to continue)")
     if UserInput.lower() == 'y':
         break
 sleep(3)
-ESC.ChangeDutyCycle(shawnc.PowerToDC(0.00))
+ESC.ChangeDutyCycle(shawnc.PWToDC(1000))
 sleep(15)
 print("ESC should be calibrated, please check tones!")
