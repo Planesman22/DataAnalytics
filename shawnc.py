@@ -6,7 +6,7 @@ def PWToDC(PW):
 def PowerToDC(Power):
     # We use PW range from 1000-2000
 
-    return PWToDC(1000+1000*Power)
+    return PWToDC(1000+(1000*Power))
 
 
 
