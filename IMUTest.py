@@ -2,7 +2,7 @@ import os
 import time
 import board
 import busio
-from adafruit_lsm6ds
+import adafruit_lsm6ds
 
 I2C = busio.I2C(board.SCL, board.SDA)
 Sensor = adafruit_lsm6ds.LSM6DSOX(I2C)
