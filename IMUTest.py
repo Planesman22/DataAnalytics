@@ -8,6 +8,8 @@ Sensor = ISM330DHCX(I2C)
 
 while True:
     os.system('clear')
-    print("Acceleration: X:%.2f, Y: %.2f, Z: %.2f m/s^2" % Sensor.acceleration)
+    SensorData = Sensor.acceleration
+    print("Acceleration: X:%.2f, Y: %.2f, Z: %.2f m/s^2" % SensorData)
+
     print("Gyro X:%.2f, Y: %.2f, Z: %.2f radians/s" % Sensor.gyro)
     time.sleep(0.1)

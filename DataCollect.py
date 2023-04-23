@@ -1,4 +1,5 @@
 import os
+import csv
 import time
 import board
 import busio
@@ -25,11 +26,31 @@ while True:
 # Literally wait a second, for vibe check
 sleep(1)
 
-ESC.duty_cycle = shawnc.PWToDC(1200)
-sleep(3)
-ESC.duty_cycle = shawnc.PWToDC(1000)
-sleep(3)
+# Speed up and wait 3 seconds to 30% power
 ESC.duty_cycle = shawnc.PWToDC(1300)
 sleep(3)
+
+# Begin Data Dump
+StartTime = time.monotonic()
+DataBuffer = []
+
+while (time.monotonic()-StartTime)< (60*5):
+    SensorData = Sensor.acceleration
+    os.system('clear')
+    print(SensorData)
+    DataBuffer.append(SensorData)
+    sleep(0.01)
+
+# Shutdown!
 ESC.duty_cycle = shawnc.PWToDC(1000)
 sleep(3)
+
+# Write Data
+Lines = 0
+print("Attempting to write "+str(len(DataBuffer))+" lines of data....")
+with open('nominal.csv', 'w', newline='') as csvfile:
+    Writer = csv.writer(csvfile)
+    for Row in DataBuffer:
+        Writer.writerow(Row)
+        Lines = Lines + 1
+print("Successfully wrote "+str(Lines)+" lines of data.")
