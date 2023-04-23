@@ -9,7 +9,7 @@ Address = 0x6a
 while True:
     os.system('clear')
 
-    Data = bus.read_byte(address)
+    Data = bus.read_byte(Address)
 
     print(Data)
 
