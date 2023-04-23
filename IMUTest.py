@@ -1,7 +1,7 @@
 import os
 import time
 import board
-from adafruit_lsm6ds
+import adafruit_lsm6ds
 
 i2c = board.I2C(board.SCL, board.SDA)  # uses board.SCL and board.SDA
 sox = LSM6DSOX(i2c)
