@@ -1,13 +1,13 @@
 import os
 import time
 import board
-import adafruit_lsm6ds
+from adafruit_lsm6ds.lsm6dsox import LSM6DSOX
 
-submodules = dir(adafruit_lsm6ds)
+submodules = dir(adafruit_lsm6ds.lsm6dsox)
 print(submodules)
 
 I2C = board.I2C()  # uses board.SCL and board.SDA
-Sensor = adafruit_lsm6ds.lsm6dsox(I2C)
+Sensor = LSM6DSOX(I2C)
 
 while True:
     os.system('clear')
