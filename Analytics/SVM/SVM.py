@@ -64,5 +64,5 @@ print(confusion_matrix(y_test, y_pred))
 print("\nClassification Report:")
 print(classification_report(y_test, y_pred))
 
-# Summary, this is a success! We see that if we don't consider temporal data, SVM can only achieve an 80% acc
-# However, the moment we take acount of temperal data, we get 90-95% accuracy depending on adjustments
+# Summary, this is a success! We see that if we don't consider temporal data, SVM can only achieve an 80% acc.
+# However, the moment we take acount of temperal data, we get 90-95% accuracy depending on adjustments.
