@@ -55,6 +55,6 @@ y_pred = KNN.predict(X_test)
 
 # Calculate the accuracy
 knn_accuracy = accuracy_score(y_test, y_pred)
-print("KNN :"+str(round(knn_accuracy,2))+"%\n")
+print("KNN :"+str(round(knn_accuracy, 2))+"%\n")
 print(str(confusion_matrix(y_test, y_pred))+"\n")
 print(str(classification_report(y_test, y_pred))+"\n")
