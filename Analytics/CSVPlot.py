@@ -3,7 +3,7 @@ import numpy
 import csv
 
 
-with open('damaged.csv', 'r') as File:
+with open('nominal180.csv', 'r') as File:
     Data = list(csv.reader(File))
 
 DataNP = numpy.array(Data, dtype=float)
