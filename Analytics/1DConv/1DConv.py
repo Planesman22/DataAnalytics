@@ -8,13 +8,12 @@ from tensorflow.keras.layers import Conv1D, MaxPooling1D, Dense, Flatten, Dropou
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.utils import to_categorical
 
-
 #Paramters
-SequenceLength = 5
+SequenceLength = 10
 # Size of window segment in values, each one here is 0.01 seconds
 StepSize = SequenceLength
 # Control Overlapping
-SkipSize = StepSize
+SkipSize = 1
 # Set gpu memory growth
 tf.config.experimental.set_memory_growth(tf.config.list_physical_devices('GPU')[0], True)
 
@@ -42,10 +41,6 @@ DamagedSeqs, DamagedLabs = getSequence(Damaged, StepSize, SkipSize, 2)
 Sequences = numpy.concatenate((NominalSeqs, DamagedSeqs, LooseSeqs), axis=0)
 Labels = numpy.concatenate((NominalLabs, LooseLabs, DamagedLabs), axis=0)
 
-# Scale the data
-scaler = MaxAbsScaler()
-Sequences = scaler.fit_transform(Sequences.reshape(-1, 3)).reshape(Sequences.shape)
-
 # Encode labels using one-hot encoding
 Labels = to_categorical(Labels, num_classes=3)
 
@@ -65,5 +60,5 @@ Model.compile(optimizer=Adam(lr=0.001), loss='categorical_crossentropy', metrics
 
 Model.summary()
 
-History = Model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=20, batch_size=32)
+History = Model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=8, batch_size=370)
 
