@@ -2,26 +2,28 @@ import numpy
 import pandas
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from sklearn.svm import SVC
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+
 
 # Parameters
 # Size of window segment in values, each one here is 0.01 seconds
-StepSize = 10
+StepSize = 4
 # Control Overlapping
-SkipSize = StepSize
+SkipSize = 4
+#KNN Stuff
+Neighbors = 4
 
-Nominal = pandas.read_csv('nominal180.csv', header=None)
-Loose = pandas.read_csv('loose180.csv', header=None)
-Damaged = pandas.read_csv('damaged180.csv', header=None)
+Nominal = pandas.read_csv('nominal180.csv', header=None, names=['X', 'Y', 'Z'])
+Loose = pandas.read_csv('loose180.csv', header=None, names=['X', 'Y', 'Z'])
+Damaged = pandas.read_csv('damaged180.csv', header=None, names=['X', 'Y', 'Z'])
 
 
-# Convert data into sequences with label, Overlapping as we go!
-
+# Convert data into sequences with label, overlapping is optional
 def getSequence(Data, Step, Skip, Label):
     Sequences = []
     Labels = []
-    for I in range(1, len(Data) - Step + 1, Skip):
+    for I in range(0, len(Data) - Step + 1, Skip):
         Sequences.append(Data.iloc[I:I + Step, :])
         Labels.append(Label)
     return numpy.array(Sequences), numpy.array(Labels)
@@ -38,7 +40,6 @@ Labels = numpy.concatenate((NominalLabs, LooseLabs, DamagedLabs), axis=0)
 
 # Shuffle and split, then reshape
 X_train, X_test, y_train, y_test = train_test_split(Sequences, Labels, test_size=0.2, random_state=42)
-
 X_train = X_train.reshape(X_train.shape[0], -1)
 X_test = X_test.reshape(X_test.shape[0], -1)
 
@@ -48,17 +49,12 @@ Scaler.fit(X_train)
 X_train = Scaler.transform(X_train)
 X_test = Scaler.transform(X_test)
 
-print("StandardScaler Successfully Fitted the Data! Proceeding to fit")
-print("Shape of our features: "+str(X_train.shape))
+KNN = KNeighborsClassifier(n_neighbors=Neighbors)
+KNN.fit(X_train, y_train)
+y_pred = KNN.predict(X_test)
 
-# Define and fit our model
-SVM = SVC(kernel='rbf', C=1, gamma='scale', random_state=42, tol=1e-3)
-SVM.fit(X_train, y_train)
-y_pred = SVM.predict(X_test)
-
-print("Shape of our test features: "+str(X_test.shape))
+# Calculate the accuracy
+knn_accuracy = accuracy_score(y_test, y_pred)
+print("KNN :"+str(round(knn_accuracy,2))+"%\n")
 print(str(confusion_matrix(y_test, y_pred))+"\n")
 print(str(classification_report(y_test, y_pred))+"\n")
-
-# Summary, this is a success! We see that if we don't consider temporal data, SVM can only achieve an 80% acc.
-# However, the moment we take acount of temperal data, we get 90-95% accuracy depending on adjustments.
