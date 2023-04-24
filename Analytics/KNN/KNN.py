@@ -53,7 +53,7 @@ KNN = KNeighborsClassifier(n_neighbors=Neighbors)
 KNN.fit(X_train, y_train)
 y_pred = KNN.predict(X_test)
 
-# Calculate the accuracy
+# Calculate the accuracy, is like cheating!
 knn_accuracy = accuracy_score(y_test, y_pred)
 print("KNN :"+str(round(knn_accuracy, 2))+"%\n")
 print(str(confusion_matrix(y_test, y_pred))+"\n")
